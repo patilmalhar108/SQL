@@ -1,0 +1,27 @@
+CREATE TABLE IF NOT EXISTS product(
+    PROD_ID TEXT PRIMARY KEY,
+    PROD_NAME TEXT,
+    PROD_PRICE TEXT,
+    PROD_COM TEXT
+);
+ INSERT INTO product(
+    PROD_ID,
+    PROD_NAME,
+    PROD_PRICE,
+    PROD_COM
+)
+VALUES
+    ('101', 'MOTHERBOARD', '3200', '15'),
+    ('102', 'KEYBOARD', '2000', '18'),
+    ('103', 'MICRO:BIT', '2400', '15'),
+    ('104', 'SCREEN PROTECTER', '1000', '12'),
+    ('105', 'FLOPPY DISK', '1200', '14'),
+    ('106', 'FLASH DRIVE', '800', '13'),
+    ('107', 'TOUCH PAD', '1000', '16'),
+    ('108', 'CHARGER', '800', '13'),
+    ('109', 'CAMERA', '500', '12'),
+    ('110', 'CHIP', '1500', '17');
+
+SELECT * FROM product;
+SELECT PROD_NAME, PROD_PRICE FROM product WHERE PROD_PRICE = (SELECT MIN(PROD_PRICE)FROM product);
+SELECT PROD_NAME, PROD_PRICE FROM product WHERE PROD_PRICE = (SELECT MAX(PROD_PRICE)FROM product);
