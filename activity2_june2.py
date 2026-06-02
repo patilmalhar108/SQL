@@ -1,0 +1,27 @@
+import sqlite3
+import pandas as pd
+database = 'db_June2_2.sqlite'
+conn = sqlite3.connect(database)
+print("Database opened successfully")
+tables = pd.read_sql('''SELECT * FROM sqlite_master WHERE TYPE = 'table';''', conn)
+print("\nTables in database")
+print(tables)
+teams = pd.read_sql('''SELECT * FROM team;''', conn)
+print("\nTeam table")
+print(teams.head())
+matches = pd.read_sql('''SELECT * FROM Match;''', conn)
+print("\nMatch table")
+print(matches.head())
+print("\nMatch table information")
+print(matches.info())
+MI_wins = pd.read_sql('''SELECT * FROM Match WHERE Match_Winner = 7;''', conn)
+print("\nMatches won by Mumbai Indians")
+print(MI_wins.head())
+MI_S8_S9 = pd.read_sql('''SELECT * FROM Match WHERE Match_Winner = 7 AND Season_Id(8,9);''',conn)
+print("\nMumbai Indians wins in seasons 8 and 9")
+print(MI_S8_S9.head())
+new_teams = pd.read_sql('''SELECT * FROM team WHERE Team_Name LIKE 'De%';''', conn)
+print("\nTeams starting with De")
+print(new_teams)
+min_max_margin = pd.read_sql('''SELECT MIN(Win_Margin) AS Minimum_Margin, MAX(Win_Margin) AS 
+Maximum_Margin FROM Match;''',conn)
